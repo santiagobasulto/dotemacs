@@ -43,8 +43,5 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;;(load-theme 'deeper-blue t)
-;;;(load-theme 'monokai t)
-
-(require 'color-theme-tomorrow)
-(color-theme-tomorrow--define-theme night)
+;;;(require 'color-theme-tomorrow)
+;;;(color-theme-tomorrow--define-theme night)
