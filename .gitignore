@@ -4,14 +4,12 @@ swank/
 /history
 /auto-save-list
 *.elc
-/customizations.el
 /secrets.el
 *~
 /emacs-meta
 /ac-comphist.dat
 /tramp
 /session*
-/pre-startup.el
 /post-startup.el
 /rcirc-log
 /abbrev_defs
