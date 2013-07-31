@@ -22,7 +22,7 @@
                  :description "Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications."
                  :website "http://chriskempson.github.io/base16/"
                  :type github
-                 :pkgname "neil477/base16-emacs"
+                 :pkgname "fgallina/base16-emacs"
                  :post-init (add-to-list 'custom-theme-load-path
                                          default-directory))
           (:name emms
@@ -35,8 +35,7 @@
                  :build `(("mkdir" "-p" ,(expand-file-name (format "%s/emms" user-emacs-directory)))
                           ("make" ,(format "EMACS=%s" el-get-emacs)
                            ,(format "SITEFLAG=\\\"--no-site-file -L %s/emacs-w3m/ \\\""
-                                    el-get-dir)
-                           "docs" "lisp")
+                                    el-get-dir) "lisp")
                           ("make" "emms-print-metadata")
                           ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
                  :depends emacs-w3m)
@@ -133,7 +132,6 @@
           mu4e
           multiple-cursors
           multi-web-mode
-          org-mode
           org-s5
           o-blog
           paredit
