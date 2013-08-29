@@ -11,10 +11,19 @@
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+;;; Browse kill region
+(require 'browse-kill-ring)
+
+;;; js2-mode
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
 ;;; direx-el
 
 (require 'direx)
 (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+
+(setq dired-omit-files "^\\.[^.]\\|\\.pyc$\\|\\.pyc$")
 
 ;;; jedi-direx
 (require 'jedi-direx)
@@ -25,7 +34,7 @@
 
 ;;;(autoload 'linum-mode "linum" "toggle line numbers on/off" t)
 ;;;(global-set-key (kbd "C-<f5>") 'linum-mode)
-;;;(global-linum-mode t)
+(global-linum-mode t)
 
 (global-unset-key (kbd "S-SPC"))
 (global-set-key (kbd "<C-return>") 'dabbrev-expand)
@@ -33,14 +42,10 @@
 (define-key global-map [f10] 'bookmark-set)
 
 ;;; Fiplr
-(global-set-key (kbd "C-x f") 'fiplr-find-file)
+(setq fiplr-root-markers '(".git" ".svn"))
 (setq fiplr-ignored-globs '((directories (".git" ".svn"))
-                            (
-                                files (
-                                        "*.jpg" "*.png" "*.zip" "*~" "*.pyc"
-                                )
-                            )))
-
+                            (files ("*.jpg" "*.png" "*.zip" "*.pyc" "*~"))))
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
 ;;(iswitchb-mode t)
 
 (require 'highlight-symbol)
@@ -100,6 +105,12 @@ point reaches the beginning or end of the buffer, stop there."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(direx:ignored-files-regexp "\\(?:\\(?:\\.\\(?:aux\\|b\\(?:bl\\|in\\|lg\\|zr/\\)\\|c\\(?:lass\\|ps?\\)\\|d\\(?:\\(?:64fs\\|fs\\|x\\(?:\\(?:32\\|64\\)fs\\)?\\)l\\)\\|elc\\|f\\(?:asl?\\|mt\\|ns?\\|\\(?:x\\(?:\\(?:32\\|64\\)f\\)\\)?sl\\)\\|g\\(?:it/\\|[lm]o\\)\\|hg/\\|idx\\|kys?\\|l\\(?:bin\\|ib\\|o[ft]\\|x\\(?:\\(?:32\\|64\\)fsl\\)\\|[ano]\\)\\|m\\(?:em\\|o\\)\\|p\\(?:64fsl\\|fsl\\|gs?\\|y[co]|.*\\.pyc\\)\\|s\\(?:o\\|parcf\\|vn/\\|x\\(?:\\(?:32\\|64\\)fsl\\)\\)\\|t\\(?:fm\\|oc\\|ps?\\)\\|ufsl\\|vrs?\\|wx\\(?:\\(?:32\\|64\\)fsl\\)\\|x86f\\|[ao]\\)\\|CVS/\\|_\\(?:\\(?:MTN\\|darcs\\)/\\)\\|~\\)\\|#\\)$")
  '(safe-local-variable-values (quote ((python-shell-interpreter-args . "/home/santiago/code/python/tecnocial/manage.py shell") (python-shell-completion-string-code . "';'.join(get_ipython().Completer.all_completions('''%s'''))
 ") (python-shell-completion-module-string-code . "';'.join(module_completion('''%s'''))
 ") (python-shell-completion-setup-code . "from IPython.core.completerlib import module_completion") (python-shell-interpreter-args . "/home/santiago/code/python/athlete/src/manage.py shell") (python-shell-interpreter . "python")))))
+
+
+;;; (require 'flymake-gjshint)
+;;; (add-hook 'js-mode-hook 'flymake-gjshint:load)
+
